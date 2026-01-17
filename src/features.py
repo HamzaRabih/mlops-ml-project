@@ -6,7 +6,9 @@ from sklearn.impute import SimpleImputer
 # (exemple: no-op pédagogique via FunctionTransformer)
 from sklearn.preprocessing import FunctionTransformer
 
-def _clip2(X):
+def _clip(X):
+    print("Clipping values to [-3, 3]")
+    print(X.head())
     return X.clip(-3, 3)
 
 
