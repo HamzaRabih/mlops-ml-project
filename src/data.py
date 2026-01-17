@@ -18,3 +18,4 @@ def load_dataset(cfg: dict):
     y = df[target]
     X = df.drop(columns=[target])
     return X, y
+
