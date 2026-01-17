@@ -12,6 +12,7 @@ from src.features import build_numeric_preprocess
 from src.model import build_model
 
 def load_cfg(path="config/train.yaml"):
+    print("Loading config from", path)
     return yaml.safe_load(open(path, "r", encoding="utf-8"))
 
 def save_confusion_matrix(y_true, y_pred, out_path: Path):
@@ -61,6 +62,7 @@ def main():
     save_confusion_matrix(yte, pred, art_dir / "confusion_matrix.png")
 
     print("Train OK:", {"accuracy": acc, "f1_macro": f1})
+
 
 if __name__ == "__main__":
     main()

@@ -2,19 +2,15 @@
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.impute import SimpleImputer
-from sklearn.base import BaseEstimator, TransformerMixin
-import numpy as np
 
-class Clipper(BaseEstimator, TransformerMixin):
-    def __init__(self, min_val=-5, max_val=5):
-        self.min_val = min_val
-        self.max_val = max_val
+# (exemple: no-op pédagogique via FunctionTransformer)
+from sklearn.preprocessing import FunctionTransformer
 
-    def fit(self, X, y=None):
-        return self
+def _clip(X):
+    print("Clipping values to [-3, 3]")
+    print(X.head())
+    return X.clip(-3, 3)
 
-    def transform(self, X):
-        return np.clip(X, self.min_val, self.max_val)
 
 
 def build_numeric_preprocess():
@@ -26,6 +22,5 @@ def build_numeric_preprocess():
     """
     return Pipeline(steps=[
     ("imputer", SimpleImputer(strategy="median")),
-    #("clipper", Clipper(-5, 5)),
     ("scaler", StandardScaler()),
     ])
